@@ -1,4 +1,5 @@
 public class BankAccount {
+    private static final int DAY_WITHDRAW_LIMIT = 1000;
     private Person person;
     private double accountState;
 
@@ -31,9 +32,11 @@ public class BankAccount {
         setAccountState(getAccountState() + addMoneyToAccount);
     }
 
-    public void withdrow(double takeMoneyFromAccount) {
+    public void withdrow(double takeMoneyFromAccount) throws MyExeption, NoMoreThenThuosend {
+        if (takeMoneyFromAccount > DAY_WITHDRAW_LIMIT)
+            throw new NoMoreThenThuosend("Dzienny limit wypłat wynosi 1000 zł");
         if ((getAccountState() - takeMoneyFromAccount) < 0)
-            throw new IllegalArgumentException();
+            throw new MyExeption("Próbujesz wypłacić więcej niż masz na koncie");
         else
             setAccountState(getAccountState() - takeMoneyFromAccount);
     }

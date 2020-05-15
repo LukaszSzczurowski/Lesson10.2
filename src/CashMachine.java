@@ -3,19 +3,18 @@ public class CashMachine {
 
         Person person = new Person("Lukasz","Szczawski");
         try {
-            BankAccount bankAccount = new BankAccount(person,5000);
+            BankAccount bankAccount = new BankAccount(person,900);
             System.out.println(bankAccount);
-            bankAccount.deposit(500);
-            bankAccount.deposit(500);
             System.out.println(bankAccount);
-            bankAccount.withdrow(10000);
+            bankAccount.withdrow(1000);
             System.out.println(bankAccount);
         } catch (NullPointerException ex){
             System.err.println("Nie podałeś właściciela konta");
-        } catch (IllegalArgumentException ex){
-            System.err.println("Brak środków na koncie");
+        } catch (MyExeption myExeption) {
+            System.out.println(myExeption.getMessage());
+        } catch (NoMoreThenThuosend noMoreThenThuosend) {
+            System.out.println(noMoreThenThuosend.getMessage());
         }
-
 
 
     }
