@@ -32,11 +32,11 @@ public class BankAccount {
         setAccountState(getAccountState() + addMoneyToAccount);
     }
 
-    public void withdrow(double takeMoneyFromAccount) throws MyExeption, NoMoreThenThuosend {
+    public void withdrow(double takeMoneyFromAccount) throws NoMoneyToWithdrawExeption, NoMoreThenThuosendExeption {
         if (takeMoneyFromAccount > DAY_WITHDRAW_LIMIT)
-            throw new NoMoreThenThuosend("Dzienny limit wypłat wynosi 1000 zł");
+            throw new NoMoreThenThuosendExeption("Dzienny limit wypłat wynosi 1000 zł");
         if ((getAccountState() - takeMoneyFromAccount) < 0)
-            throw new MyExeption("Próbujesz wypłacić więcej niż masz na koncie");
+            throw new NoMoneyToWithdrawExeption("Próbujesz wypłacić więcej niż masz na koncie");
         else
             setAccountState(getAccountState() - takeMoneyFromAccount);
     }
