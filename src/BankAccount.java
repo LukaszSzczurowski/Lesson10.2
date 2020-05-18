@@ -4,7 +4,7 @@ public class BankAccount {
     private double accountState;
 
     public BankAccount(Person person, double accountState) {
-        if (person.equals(null))
+        if (person == null)
             throw new NullPointerException();
         else
             this.person = person;
@@ -32,7 +32,7 @@ public class BankAccount {
         setAccountState(getAccountState() + addMoneyToAccount);
     }
 
-    public void withdrow(double takeMoneyFromAccount) throws NoMoneyToWithdrawExeption, NoMoreThenThuosendExeption {
+    public void withdraw(double takeMoneyFromAccount) throws NoMoneyToWithdrawExeption, NoMoreThenThuosendExeption {
         if (takeMoneyFromAccount > DAY_WITHDRAW_LIMIT)
             throw new NoMoreThenThuosendExeption("Dzienny limit wypłat wynosi 1000 zł");
         if ((getAccountState() - takeMoneyFromAccount) < 0)

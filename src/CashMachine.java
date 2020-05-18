@@ -11,24 +11,24 @@ public class CashMachine {
     public static void main(String[] args) {
 
         Person person = new Person("Lukasz", "Szczawski");
-        int choise = 0;
+        int choice = 0;
         do {
             showOptions();
             try {
                 BankAccount bankAccount = new BankAccount(person, 900);
-                choise = scanner.nextInt();
-                menuOperation(choise, bankAccount);
+                choice = scanner.nextInt();
+                menuOperation(choice, bankAccount);
 
             } catch (InputMismatchException ex) {
                 System.out.println("Nie ma takiej opcji. Spróbuj ponownie");
             }
 
-        } while (choise != 0);
+        } while (choice != 0);
 
     }
 
-    private static void menuOperation(int choise, BankAccount bankAccount) {
-        switch (choise) {
+    private static void menuOperation(int choice, BankAccount bankAccount) {
+        switch (choice) {
             case DRAW:
                 System.out.println("Jaką kwotę wpłacasz?");
                 bankAccount.deposit(scanner.nextDouble());
@@ -36,7 +36,7 @@ public class CashMachine {
             case WITHDRAW:
                 System.out.println("Jaką kwotę wypłacasz?");
                 try {
-                    bankAccount.withdrow(scanner.nextDouble());
+                    bankAccount.withdraw(scanner.nextDouble());
                 } catch (NoMoneyToWithdrawExeption myExeption) {
                     myExeption.printStackTrace();
                 } catch (NoMoreThenThuosendExeption noMoreThenThuosend) {
@@ -45,6 +45,7 @@ public class CashMachine {
                 break;
             case SHOW_ACCOUNT:
                 System.out.println("Stan konta: " + bankAccount.toString());
+                break;
             default:
                 System.out.println("Nie ma takiej opcji");
         }
